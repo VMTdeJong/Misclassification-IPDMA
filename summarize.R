@@ -30,6 +30,10 @@ pdf("summarized/plot_beta.pdf")
 plot_bias_rmse_coverage(beta_to_plot) 
 dev.off()
 
+pdf("summarized/plot_beta_sce1.pdf")
+plot_bias_rmse_coverage(beta_to_plot[beta_to_plot$sce == 1, ], ncol = 3) 
+dev.off()
+
 # Tau
 tau_summary <- summarise_results(est_tau, true_value = .15)
 tau_summary_overall <- summarise_overall_results(est_tau, true_value = .15)
@@ -43,6 +47,10 @@ if (all(tau_median$sce == tau_coverage$sce) && all(tau_median$method == tau_cove
 
 pdf("summarized/plot_tau.pdf")
 plot_bias_rmse_coverage(tau_to_plot) 
+dev.off()
+
+pdf("summarized/plot_tau.pdf")
+plot_bias_rmse_coverage(tau_to_plot[tau_to_plot$sce == 1, ], ncol = 3) 
 dev.off()
 
 print(tau_summary[tau_summary$statistic == "tau.median", c("sce", "method", "mean", "RMSE", "bias", "bias_lb", "bias_ub", "n")], n = 100)

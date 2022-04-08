@@ -119,6 +119,7 @@ plot_bias_rmse_coverage <- function(df,
                                                 "eq648", "ipd_gold", "ipd_full", "ipd_xors")[c(2,3,4,5,7)],
                                     level = .95,
                                     sce_levels = unique(df$sce),
+                                    ncol = 1,
                                     ...) {
   library(ggplot2)
   
@@ -167,7 +168,7 @@ plot_bias_rmse_coverage <- function(df,
                   aes(ymin = lb, ymax = ub, color = Method),
                   position = position_dodge(dodge)) +
     theme(legend.position = "bottom") +
-    facet_wrap( . ~ Measure, scales = "free", ncol = 1) +
+    facet_wrap( . ~ Measure, scales = "free", ncol = ncol) +
     scale_shape_manual(values = c(20, 24, 15, 3, 7, 11, 8)[seq_along(unique(df$Method))]) 
 }
 
